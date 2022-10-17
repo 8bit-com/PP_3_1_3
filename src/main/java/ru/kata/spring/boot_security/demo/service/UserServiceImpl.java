@@ -31,7 +31,6 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return user;
     }
-
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
