@@ -10,6 +10,7 @@ import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 
 @Controller
@@ -28,6 +29,12 @@ public class AdminController {
     public String pageForAdmin(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "users";
+    }
+
+    @GetMapping("admin/{id}")
+    public String getUser(@PathVariable("id") long id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "user";
     }
 
     @GetMapping("admin/new")
@@ -53,7 +60,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @DeleteMapping("admin/delete/{id}")
+    @PostMapping("/admin/delete/{id}")
     public String pageDelete(@PathVariable("id") long id) {
         userService.removeUser(id);
         return "redirect:/admin";
@@ -66,7 +73,7 @@ public class AdminController {
         return "edit";
     }
 
-    @PutMapping("admin/edit")
+    @PostMapping("admin/edit")
     public String pageEdit(@Valid User user, BindingResult bindingResult,
                            @RequestParam("listRoles") ArrayList<Long>roles) {
         if (bindingResult.hasErrors()) {

@@ -49,8 +49,7 @@
         <th th:width="50">Delete</th>
     </tr>
     <tr th:each="users : ${users}">
-
-        <td th:utext="${users.userId}">User_id</td>
+        <td><a th:href="@{'/admin/' + ${users.userId}}" th:utext="${users.userId}">UserId</a></td>
         <td th:utext="${users.username}">Name</td>
         <td th:utext="${users.name}">Name</td>
         <td th:utext="${users.surname}">Surname</td>
