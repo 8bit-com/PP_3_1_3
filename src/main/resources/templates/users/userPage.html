@@ -14,9 +14,9 @@
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <p class="navbar-brand text-white">
-            <b><span class="align-middle" th:text="${user.login}"></span></b>
+            <b><span class="align-middle" th:text="${user.email}"></span></b>
             <span class="align-middle">with roles:</span>
-            <span class="align-middle" th:text="${user.roles}"></span>
+            <span class="align-middle" th:text="${user.getRolesToString()}"></span>
         </p>
         <form th:action="@{/logout}" method="post">
             <button type="submit" class="btn btn-dark text-secondary">Logout</button>
@@ -48,11 +48,10 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Surname</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
                                     <th>Age</th>
                                     <th>Email</th>
-                                    <th>Login</th>
                                     <th>Role</th>
                                 </tr>
                                 </thead>
@@ -63,7 +62,6 @@
                                     <td th:text="${user.surname}"></td>
                                     <td th:text="${user.age}"></td>
                                     <td th:text="${user.email}"></td>
-                                    <td th:text="${user.login}"></td>
                                     <td>
                                         <th:block th:each="role: ${user.roles}"
                                                   th:text="${role.userRole} + ' '">

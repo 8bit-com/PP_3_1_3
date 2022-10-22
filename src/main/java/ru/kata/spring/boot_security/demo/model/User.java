@@ -153,6 +153,9 @@ public class User implements UserDetails {
     public Set<Role> getRoles() {
         return roles;
     }
+    public String getRolesToString() {
+        return roles.toString().replaceAll("^\\[|\\]$", "");
+    }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
